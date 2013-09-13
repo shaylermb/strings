@@ -1,0 +1,4 @@
+strings
+=======
+
+Strings class work
