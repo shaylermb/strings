@@ -67,6 +67,44 @@ class Multi {
 			}
 		}
 	}
+	public static int determinant(int[][] a) {
+		if (!isSquareMatrix(a)) {
+			throw new IllegalArgumentException("Two-dimensional array given must be square!");
+		}
+
+		int determinant = 0;
+		int multiplyFactor = 1;
+		int size = a.length;
+
+		if (size == 1) {
+			//1 by 1 matrix
+			return a[0][0];
+		} else if (size == 2) {
+			//2 by 2 matrix
+			return a[0][0]*a[1][1] - a[0][1]*a[1][0];
+		} else {
+			//n by n matrix
+			for (int c = 0 ; c < size ; c++) {
+				int number = a[0][c];
+				int[][] sub = getSubArray(a, 0, c);
+
+				determinant += multiplyFactor * (number * determinant(sub));
+				multiplyFactor *= -1;
+			}
+		}
+
+		return determinant;
+	}
+	private static boolean isSquareMatrix(int[][] a) {
+		for (int i = 0 ; i < a.length ; i++) {
+			if (a.length != a[i].length) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 }
 
 
