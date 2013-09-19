@@ -104,6 +104,24 @@ class Multi {
 
 		return true;
 	}
+	public static int[][] snakeDraft(int players, int rounds) {
+		int[][] a = new int[rounds][players];
+
+		for (int r = 0 ; r < a.length ; r++) {
+			for (int c = 0 ; c < a[r].length ; c++) {
+				a[r][c] = (r * 10) + (c + 1);
+			}
+		}
+
+		for (int r = 0 ; r < a.length ; r++) {
+			if (r % 2 != 0) {
+				//Reverse row
+				a = reverseRow(a, r);
+			}
+		}
+
+		return a;
+	}
 
 }
 
